@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{20C0C898-21B0-4E6A-8E46-883EAF863095}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Timer.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="C:\NCES\NCESArchiveManager\LaisArchive.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Timer">
+        <MSBuild Projects="Timer.dproj"/>
+    </Target>
+    <Target Name="Timer:Clean">
+        <MSBuild Projects="Timer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Timer:Make">
+        <MSBuild Projects="Timer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="LaisArchive">
+        <MSBuild Projects="C:\NCES\NCESArchiveManager\LaisArchive.dproj"/>
+    </Target>
+    <Target Name="LaisArchive:Clean">
+        <MSBuild Projects="C:\NCES\NCESArchiveManager\LaisArchive.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="LaisArchive:Make">
+        <MSBuild Projects="C:\NCES\NCESArchiveManager\LaisArchive.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Timer;LaisArchive"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Timer:Clean;LaisArchive:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Timer:Make;LaisArchive:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
